@@ -29,6 +29,9 @@ jobs:
       - prepare
 
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
     env:
       VERSION: ${{ needs.prepare.outputs.version_tag }}
       GIT_HASH: ${{ github.sha }}
@@ -44,7 +47,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT}}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Run docker push"
         env:
@@ -81,4 +84,4 @@ jobs:
           version: "~> v2"
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

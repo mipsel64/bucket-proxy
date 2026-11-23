@@ -66,6 +66,9 @@ jobs:
     runs-on: ubuntu-22.04
     needs:
       - prepare
+    permissions:
+      contents: read
+      packages: write
     env:
       VERSION: ${{ needs.prepare.outputs.image_tag }}
       GIT_HASH: ${{ github.sha }}
@@ -81,7 +84,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT}}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Run docker ${{ github.event_name != 'pull_request' && 'push' || 'build' }}"
         run: |
