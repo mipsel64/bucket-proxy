@@ -29,7 +29,7 @@ func InitFromViper(v *viper.Viper) (Interface, error) {
 
 	switch provider {
 	case GoogleCloudStorage:
-		return gcs.InitWithViper(bucket, v)
+		return gcs.InitWithViper(namespace, bucket, v)
 	default:
 		return nil, fmt.Errorf("unknown provider %q", provider)
 	}
