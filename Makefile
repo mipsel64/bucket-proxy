@@ -4,7 +4,7 @@ REPO_ROOT := $(shell git rev-parse --show-toplevel)
 
 BINARY := bucket-proxy
 
-IMAGE_REPO := ghcr.io/vietanhduong/bucket-proxy
+IMAGE_REPO := ghcr.io/mipsel64/bucket-proxy
 
 EXTRA_DOCKER_BUILD_ARGS ?=
 
