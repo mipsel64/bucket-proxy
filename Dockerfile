@@ -21,11 +21,6 @@ FROM ${BASE_IMAGE} AS release
 ARG TARGETOS
 ARG TARGETARCH
 
-LABEL maintainer="vietanhs0817@gmail.com"
-LABEL org.opencontainers.image.source=https://github.com/vietanhduong/bucket-proxy
-LABEL org.opencontainers.image.description="A simple bucke proxy server"
-LABEL org.opencontainers.image.licenses=MIT
-
 COPY --from=builder /tmp/install/${TARGETOS}/${TARGETARCH}/usr/bin/* /usr/bin/
 
 ENTRYPOINT [ "/usr/bin/bucket-proxy" ]
