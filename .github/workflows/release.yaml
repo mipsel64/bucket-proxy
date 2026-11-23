@@ -9,6 +9,7 @@ on:
 jobs:
   prepare:
     runs-on: ubuntu-22.04
+    permissions: {}
     outputs:
       version_tag: ${{ steps.version_tag.outputs.value }}
       build_date: ${{ steps.build_date.outputs.value }}
@@ -59,10 +60,7 @@ jobs:
       - prepare
       - build
     permissions:
-      packages: write
       contents: write
-      attestations: write
-      id-token: write
     runs-on: ubuntu-22.04
     env:
       VERSION_TAG: ${{ needs.prepare.outputs.version_tag }}

@@ -13,6 +13,8 @@ on:
 jobs:
   prepare:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
     outputs:
       current_branch: ${{ steps.current_branch.outputs.value }}
       head_sha: ${{ steps.head_sha.outputs.value }}
