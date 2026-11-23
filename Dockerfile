@@ -10,11 +10,12 @@ ARG NOOPT
 ARG NOSTRIP
 ARG VERSION
 ARG GIT_COMMIT
+ARG BUILD_DATE
 
 WORKDIR /go/src/bucket-proxy
 RUN --mount=type=bind,readwrite,target=/go/src/bucket-proxy --mount=target=/root/.cache,type=cache --mount=target=/go/pkg,type=cache \
   make GOARCH=${TARGETARCH} GOOS=${TARGETOS} \
-  VERSION=${VERSION} GIT_COMMIT=${GIT_COMMIT} NOOPT=${NOOPT} NOSTRIP=${NOSTRIP} \
+  VERSION=${VERSION} GIT_COMMIT=${GIT_COMMIT} BUILD_DATE=${BUILD_DATE} NOOPT=${NOOPT} NOSTRIP=${NOSTRIP} \
   DESTDIR=/tmp/install/${TARGETOS}/${TARGETARCH} install
 
 FROM ${BASE_IMAGE} AS release

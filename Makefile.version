@@ -11,7 +11,9 @@ override VERSION = unknown
 endif
 endif
 
-BUILD_DATE = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
+ifeq ($(strip $(BUILD_DATE)),)
+override BUILD_DATE := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
+endif
 
 ifeq ($(GIT_COMMIT),)
 ifeq ($(IN_GIT),true)
